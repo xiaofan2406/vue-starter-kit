@@ -1,6 +1,6 @@
 {
   "name": "vue-starter-kit",
-  "version": "0.0.4",
+  "version": "0.0.0",
   "description": "Vue starter kit",
   "scripts": {
     "dev": "node ./scripts/dev.js",
@@ -29,7 +29,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "node-uuid": "^1.4.7",
     "vue": "^2.0.1",
     "vue-router": "^2.0.0",
     "vuex": "^2.0.0",
@@ -60,6 +59,7 @@
     "gzip-size": "^3.0.0",
     "html-webpack-plugin": "^2.22.0",
     "json-loader": "^0.5.4",
+    "node-uuid": "^1.4.7",
     "postcss-cssnext": "^2.8.0",
     "postcss-loader": "^0.13.0",
     "precss": "^1.4.0",
