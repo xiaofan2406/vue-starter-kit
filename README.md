@@ -23,5 +23,10 @@ npm run build
 - jsx support only
 
 
+### CSS
+- PostCSS with cssnext, and postcss-import
+- CSS modules is NOT enabled
+
+
 ### Disclosure
 - Many scripts for webpack build process are updated according to [create-react-app](https://github.com/facebookincubator/create-react-app)

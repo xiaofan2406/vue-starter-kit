@@ -26,7 +26,7 @@ module.exports = {
     fallback: paths.nodeModulesDir,
     extensions: ['', '.js', '.json'],
     alias: {
-      src: paths.srcDir, // this allows import 'src/Component'
+      src: paths.srcDir, // this allows import `src` folder without knowing its relative path
       store: `${paths.srcDir}/store`
     }
   },

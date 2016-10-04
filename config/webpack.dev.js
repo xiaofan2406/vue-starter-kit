@@ -1,8 +1,8 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const precss = require('precss');
 const cssnext = require('postcss-cssnext');
+const postcssImport = require('postcss-import');
 const paths = require('./paths');
 
 
@@ -16,7 +16,7 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.json'],
     alias: {
-      src: paths.srcDir, // this allows import 'src/Component'
+      src: paths.srcDir, // this allows import `src` folder without knowing its relative path
       store: `${paths.srcDir}/store`
     }
   },
@@ -73,15 +73,20 @@ module.exports = {
       }
     }]
   },
-  postcss() {
-    return [precss, cssnext({
-      browsers: [
-        '>1%',
-        'last 2 versions',
-        'Firefox ESR',
-        'not ie < 9'
-      ]
-    })];
+  postcss(webpack) {
+    return [
+      postcssImport({
+        addDependencyTo: webpack
+      }),
+      cssnext({
+        browsers: [
+          '>1%',
+          'last 2 versions',
+          'Firefox ESR',
+          'not ie < 9'
+        ]
+      })
+    ];
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
