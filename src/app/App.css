@@ -1,0 +1,33 @@
+.App-header {
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.App-title {
+  font-size: 18px;
+  color: #fff;
+  font-family: monospace;
+}
+
+.App-logo {
+  height: 40px;
+}
+
+.App-nav {
+  &>.App-nav-link {
+    text-decoration: none;
+    color: #fff;
+    display: inline-flex;
+    margin-right: 10px;
+    height: 40px;
+    align-items: center;
+
+    &.App-nav-link-active {
+      border-bottom: 2px solid #FFF;
+    }
+  }
+}
