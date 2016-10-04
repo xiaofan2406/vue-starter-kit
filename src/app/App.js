@@ -1,6 +1,7 @@
 import './App.css';
 import logo from './logo.png';
 
+
 export default {
   render(h) {
     return (

@@ -73,10 +73,10 @@ module.exports = {
       }
     }]
   },
-  postcss(webpack) {
+  postcss(wp) {
     return [
       postcssImport({
-        addDependencyTo: webpack
+        addDependencyTo: wp
       }),
       cssnext({
         browsers: [
