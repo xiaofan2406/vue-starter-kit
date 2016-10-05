@@ -1,8 +1,8 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const precss = require('precss');
 const cssnext = require('postcss-cssnext');
+const postcssImport = require('postcss-import');
 const paths = require('./paths');
 const pkg = require('../package.json');
 
@@ -24,7 +24,7 @@ module.exports = {
     // if there any conflicts. This matches Node resolution mechanism.
     // https://github.com/facebookincubator/create-react-app/issues/253
     fallback: paths.nodeModulesDir,
-    extensions: ['', '.js', '.json'],
+    extensions: ['', '.js', '.vue', '.json'],
     alias: {
       src: paths.srcDir, // this allows import `src` folder without knowing its relative path
       store: `${paths.srcDir}/store`
@@ -38,11 +38,20 @@ module.exports = {
   },
   module: {
     preLoaders: [{
+      test: /\.vue$/,
+      loader: 'eslint',
+      include: paths.srcDir,
+      exclude: /node_modules/
+    }, {
       test: /\.js$/,
       include: paths.srcDir,
       loader: 'eslint'
     }],
     loaders: [{
+      test: /\.vue$/,
+      loader: 'vue',
+      include: paths.srcDir
+    }, {
       test: /\.js$/,
       include: paths.srcDir,
       loader: 'babel'
@@ -81,15 +90,22 @@ module.exports = {
       }
     }]
   },
-  postcss() {
-    return [precss, cssnext({
-      browsers: [
-        '>1%',
-        'last 2 versions',
-        'Firefox ESR',
-        'not ie < 9'
-      ]
-    })];
+  vue: {
+    postcss(wp) {
+      return [
+        postcssImport({
+          addDependencyTo: wp
+        }),
+        cssnext({
+          browsers: [
+            '>1%',
+            'last 2 versions',
+            'Firefox ESR',
+            'not ie < 9'
+          ]
+        })
+      ];
+    }
   },
   plugins: [
     new webpack.NoErrorsPlugin(),

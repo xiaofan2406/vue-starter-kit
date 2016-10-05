@@ -23,17 +23,11 @@ module.exports = {
     sourceType: 'module',
     ecmaVersion: 6,
     ecmaFeatures: {
-      jsx: true,
       generators: true,
       experimentalObjectRestSpread: true
     }
   },
-  plugins: [
-    "react"
-  ],
-  globals: {
-    h: true
-  },
+  plugins: ["html"],
   extends: ["airbnb-base"],
   rules: { // additional rules to work with eslint-config-airbnb
     "comma-dangle": [2, "never"], // yuk, disallow comma after the last propery of an object
@@ -44,7 +38,7 @@ module.exports = {
     "no-plusplus": 0, // i++ is allowed
     "no-unused-vars": ["error", { "argsIgnorePattern": "^h$" }], // render(h)
     "arrow-parens": [2, "as-needed", { "requireForBlockBody": true }], // better looking arrow-funcs
-    "react/jsx-uses-vars": 1,
+    "import/extensions": [2, { "vue": "never" }],
     "import/no-extraneous-dependencies": 0 // not necessary at all
   }
 };

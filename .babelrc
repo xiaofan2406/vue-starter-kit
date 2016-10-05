@@ -2,7 +2,6 @@
   "presets": ["latest"],
   "plugins": [
     "transform-object-rest-spread",
-    "transform-vue-jsx",
     ["transform-runtime", {
       "helpers": false,
       "polyfill": false,

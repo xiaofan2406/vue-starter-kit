@@ -1,3 +1,11 @@
+<template>
+  <div>
+    <input ref="input" type="text" @input="searchTodo" placeholder="search..." />
+    <button type="button" @click="clearSearch">clear</button>
+  </div>
+</template>
+
+<script>
 import { todoActions } from 'store/actions';
 
 
@@ -10,13 +18,6 @@ export default {
     searchTodo(e) {
       this.$store.dispatch(todoActions.SET_SEARCH, e.target.value);
     }
-  },
-  render(h) {
-    return (
-      <div>
-        <input ref="input" type="text" on-input={this.searchTodo} placeholder="search..."/>
-        <button type="button" on-click={this.clearSearch}>clear</button>
-      </div>
-    );
   }
 };
+</script>

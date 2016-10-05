@@ -14,7 +14,7 @@ module.exports = {
     `${paths.srcDir}/index.js`
   ],
   resolve: {
-    extensions: ['', '.js', '.json'],
+    extensions: ['', '.js', '.vue', '.json'],
     alias: {
       src: paths.srcDir, // this allows import `src` folder without knowing its relative path
       store: `${paths.srcDir}/store`
@@ -30,11 +30,20 @@ module.exports = {
   },
   module: {
     preLoaders: [{
+      test: /\.vue$/,
+      loader: 'eslint',
+      include: paths.srcDir,
+      exclude: /node_modules/
+    }, {
       test: /\.js$/,
       include: paths.srcDir,
       loader: 'eslint'
     }],
     loaders: [{
+      test: /\.vue$/,
+      loader: 'vue',
+      include: paths.srcDir
+    }, {
       test: /\.js$/,
       include: paths.srcDir,
       loader: 'babel',
@@ -73,20 +82,22 @@ module.exports = {
       }
     }]
   },
-  postcss(wp) {
-    return [
-      postcssImport({
-        addDependencyTo: wp
-      }),
-      cssnext({
-        browsers: [
-          '>1%',
-          'last 2 versions',
-          'Firefox ESR',
-          'not ie < 9'
-        ]
-      })
-    ];
+  vue: {
+    postcss(wp) {
+      return [
+        postcssImport({
+          addDependencyTo: wp
+        }),
+        cssnext({
+          browsers: [
+            '>1%',
+            'last 2 versions',
+            'Firefox ESR',
+            'not ie < 9'
+          ]
+        })
+      ];
+    }
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
