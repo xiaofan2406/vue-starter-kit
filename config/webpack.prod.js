@@ -40,8 +40,7 @@ module.exports = {
     preLoaders: [{
       test: /\.vue$/,
       loader: 'eslint',
-      include: paths.srcDir,
-      exclude: /node_modules/
+      include: paths.srcDir
     }, {
       test: /\.js$/,
       include: paths.srcDir,
@@ -57,32 +56,27 @@ module.exports = {
       loader: 'babel'
     }, {
       test: /\.css$/,
-      include: paths.srcDir,
       loader: ExtractTextPlugin.extract(
         'style',
         'css?-autoprefixer!postcss'
       )
     }, {
       test: /\.json$/,
-      include: paths.srcDir,
       loader: 'json'
     }, {
       test: /\.(eot|otf|ttf|woff|woff2)(\?.*)?$/,
-      include: paths.srcDir,
       loader: 'file',
       query: {
         name: 'fonts/[name].[hash:8].[ext]'
       }
     }, {
       test: /\.(jpg|jpeg|png|gif|svg|ico|webp)(\?.*)?$/,
-      include: paths.srcDir,
       loader: 'file',
       query: {
         name: 'media/[name].[hash:8].[ext]'
       }
     }, {
       test: /\.(mp4|webm|wav|mp3|m4a|aac|oga)(\?.*)?$/,
-      include: paths.srcDir,
       loader: 'url',
       query: {
         limit: 10000,
