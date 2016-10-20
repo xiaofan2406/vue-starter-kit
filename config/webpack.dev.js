@@ -1,114 +1,70 @@
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const cssnext = require('postcss-cssnext');
-const postcssImport = require('postcss-import');
 const paths = require('./paths');
+const common = require('./webpack.common');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const getLocalIP = require('./ip');
 
 
 module.exports = {
   devtool: 'eval',
   entry: [
-    'webpack-dev-server/client',
-    'webpack/hot/dev-server',
     `${paths.srcDir}/index.js`
   ],
   resolve: {
-    extensions: ['', '.js', '.vue', '.json'],
-    alias: {
-      src: paths.srcDir, // this allows import `src` folder without knowing its relative path
-      store: `${paths.srcDir}/store`
-    }
+    extensions: common.resolve.extensions,
+    alias: common.resolve.alias
   },
   output: {
+    // For dev, `path` and `filename` are not important because of using webpack-dev-server
     path: paths.buildDir,
+    filename: 'bundle.js',
     // In development, we always serve from the root. This makes config easier.
     publicPath: '/',
     // Add /* filename */ comments to generated require()s in the output.
-    pathinfo: true,
-    filename: 'bundle.js'
+    pathinfo: true
   },
   module: {
-    preLoaders: [{
-      test: /\.vue$/,
-      loader: 'eslint',
-      include: paths.srcDir
-    }, {
-      test: /\.js$/,
-      include: paths.srcDir,
-      loader: 'eslint'
-    }],
-    loaders: [{
-      test: /\.vue$/,
-      loader: 'vue',
-      include: paths.srcDir
-    }, {
-      test: /\.js$/,
-      include: paths.srcDir,
-      loader: 'babel',
-      query: {
-        cacheDirectory: true
-      }
-    }, {
-      test: /\.css$/,
-      loader: 'style!css?-autoprefixer!postcss'
-    }, {
-      test: /\.json$/,
-      loader: 'json'
-    }, {
-      test: /\.(eot|otf|ttf|woff|woff2)(\?.*)?$/,
-      loader: 'file',
-      query: {
-        name: 'fonts/[name].[hash:8].[ext]'
-      }
-    }, {
-      test: /\.(jpg|jpeg|png|gif|svg|ico|webp)(\?.*)?$/,
-      loader: 'file',
-      query: {
-        name: 'media/[name].[hash:8].[ext]'
-      }
-    }, {
-      test: /\.(mp4|webm|wav|mp3|m4a|aac|oga)(\?.*)?$/,
-      loader: 'url',
-      query: {
-        limit: 10000,
-        name: 'media/[name].[hash:8].[ext]'
-      }
-    }]
+    preLoaders: common.preLoaders,
+    loaders: [
+      {
+        test: /\.js$/,
+        include: paths.srcDir,
+        loader: 'babel',
+        query: {
+          cacheDirectory: true
+        }
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css?-autoprefixer!postcss'
+      },
+      ...common.loaders
+    ]
   },
-  vue: {
-    postcss(wp) {
-      return [
-        postcssImport({
-          addDependencyTo: wp
-        }),
-        cssnext({
-          browsers: [
-            '>1%',
-            'last 2 versions',
-            'Firefox ESR',
-            'not ie < 9'
-          ]
-        })
-      ];
-    }
-  },
+  postcss: common.postcss,
+  vue: common.vue,
+  node: common.node,
   plugins: [
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
-      template: `${paths.publicDir}/index.html`,
-      favicon: `${paths.publicDir}/favicon.ico`
+      template: `${paths.srcDir}/index.html`,
+      favicon: `${paths.srcDir}/favicon.png`
     }),
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"' }),
-    new webpack.HotModuleReplacementPlugin(),
-    new CaseSensitivePathsPlugin()
+    new webpack.HotModuleReplacementPlugin()
   ],
-  // Some libraries import Node modules but don't use them in the browser.
-  // Tell Webpack to provide empty mocks for them so importing them works.
-  node: {
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty'
+  devServer: {
+    contentBase: paths.buildDir,
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    publicPath: '/',
+    stats: 'errors-only',
+    watchOptions: {
+      ignored: /node_modules/
+    },
+    host: process.env.HOST || getLocalIP(),
+    port: process.env.PORT || 8080
   }
 };

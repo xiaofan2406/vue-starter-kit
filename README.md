@@ -25,13 +25,9 @@ npm run build
 
 ### JSX support
 - in branch [jsx](https://github.com/xiaofan2406/vue-starter-kit/tree/jsx)
-- jsx not hot reloading properly
+- JSX not hot reloading properly
 
 
 ### CSS
 - PostCSS with cssnext, and postcss-import
 - CSS modules is NOT enabled
-
-
-### Disclosure
-- Many scripts for webpack build process are updated according to [create-react-app](https://github.com/facebookincubator/create-react-app)

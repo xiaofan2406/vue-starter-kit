@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "description": "Vue starter kit",
   "scripts": {
-    "dev": "node ./scripts/dev.js",
-    "build": "node ./scripts/build.js",
+    "dev": "NODE_ENV=development ./node_modules/.bin/webpack-dev-server --config ./config/webpack.dev.js",
+    "prebuild": "rm -r -f ./build",
+    "build": "NODE_ENV=production ./node_modules/.bin/webpack --config ./config/webpack.prod.js",
     "lint": "./node_modules/.bin/eslint -c .eslintrc.js ./src",
     "preversion": "npm run lint",
     "postversion": "git push"
@@ -29,8 +30,8 @@
   },
   "license": "ISC",
   "dependencies": {
-    "vue": "^2.0.2",
-    "vue-router": "^2.0.0",
+    "vue": "^2.0.3",
+    "vue-router": "^2.0.1",
     "vuex": "^2.0.0",
     "vuex-router-sync": "^3.0.0"
   },
@@ -51,8 +52,6 @@
     "eslint-plugin-html": "^1.5.3",
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-react": "^6.4.1",
-    "eslint-plugin-vue": "^0.1.1",
-    "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "filesize": "^3.3.0",

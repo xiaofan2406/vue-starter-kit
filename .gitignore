@@ -35,8 +35,9 @@ Thumbs.db
 # Node specific #
 #################
 node_modules/
+yarn.lock
+.yarnclean
 
 # App specific #
 ################
 build/
-release/
