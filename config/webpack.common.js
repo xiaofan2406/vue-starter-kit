@@ -22,7 +22,6 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.vue', '.json'],
     alias: {
-      store: `${paths.srcDir}/store`,
       src: paths.srcDir // this allows import 'src/...' without knowing the relative path
     }
   },
