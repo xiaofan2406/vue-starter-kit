@@ -18,7 +18,7 @@ module.exports = {
     vendor: Object.keys(pkg.dependencies)
   },
   resolve: {
-    fallback: paths.nodeModulesDir,
+    fallback: common.resolve.fallback,
     extensions: common.resolve.extensions,
     alias: common.resolve.alias
   },

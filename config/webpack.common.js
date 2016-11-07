@@ -20,8 +20,10 @@ const postcss = wp => ([
 
 module.exports = {
   resolve: {
+    fallback: paths.nodeModulesDir,
     extensions: ['', '.js', '.vue', '.json'],
     alias: {
+      components: `${paths.appDir}/components`,
       app: paths.appDir // this allows import 'app/...' without knowing the relative path
     }
   },

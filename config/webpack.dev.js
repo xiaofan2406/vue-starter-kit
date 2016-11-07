@@ -11,6 +11,7 @@ module.exports = {
     `${paths.appDir}/index.js`
   ],
   resolve: {
+    fallback: common.resolve.fallback,
     extensions: common.resolve.extensions,
     alias: common.resolve.alias
   },
