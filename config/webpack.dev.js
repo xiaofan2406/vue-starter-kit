@@ -37,13 +37,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style!css?-autoprefixer&importLoaders=1!postcss'
+        loader: 'style!css?modules&localIdentName=[name]-[local]-[hash:base64:5]&-autoprefixer&importLoaders=1!postcss'
       },
       ...common.loaders
     ]
   },
   postcss: common.postcss,
-  vue: common.vue,
   node: common.node,
   plugins: [
     new webpack.NoErrorsPlugin(),

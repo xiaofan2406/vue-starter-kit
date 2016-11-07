@@ -21,7 +21,7 @@ const postcss = wp => ([
 module.exports = {
   resolve: {
     fallback: paths.nodeModulesDir,
-    extensions: ['', '.js', '.vue', '.json'],
+    extensions: ['', '.js', '.json'],
     alias: {
       components: `${paths.appDir}/components`,
       app: paths.appDir // this allows import 'app/...' without knowing the relative path
@@ -29,22 +29,12 @@ module.exports = {
   },
   preLoaders: [
     {
-      test: /\.vue$/,
-      loader: 'eslint',
-      include: paths.appDir
-    },
-    {
       test: /\.js$/,
       include: paths.appDir,
       loader: 'eslint'
     }
   ],
   loaders: [
-    {
-      test: /\.vue$/,
-      loader: 'vue',
-      include: paths.appDir
-    },
     {
       test: /\.json$/,
       loader: 'json'
@@ -72,9 +62,6 @@ module.exports = {
       }
     }
   ],
-  vue: {
-    postcss
-  },
   postcss,
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

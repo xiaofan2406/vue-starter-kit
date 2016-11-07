@@ -40,14 +40,13 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract(
         'style',
-        'css?-autoprefixer&importLoaders=1!postcss'
+        'css?modules&localIdentName=[name]-[local]-[hash:base64:5]&-autoprefixer&importLoaders=1!postcss'
       )
       },
       ...common.loaders
     ]
   },
   postcss: common.postcss,
-  vue: common.vue,
   node: common.node,
   plugins: [
     new webpack.NoErrorsPlugin(),

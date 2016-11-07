@@ -33,9 +33,13 @@
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.0",
+    "babel-helper-vue-jsx-merge-props": "^2.0.2",
     "babel-loader": "^6.2.7",
+    "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-plugin-transform-vue-jsx": "^3.1.2",
+    "babel-plugin-vue-jsx-hot-reload": "^0.1.2",
     "babel-preset-latest": "^6.16.0",
     "css-loader": "^0.25.0",
     "eslint": "^3.9.1",
@@ -53,7 +57,6 @@
     "postcss-loader": "^1.1.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "vue-loader": "^9.8.1",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2",
     "webpack-manifest-plugin": "^1.1.0"

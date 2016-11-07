@@ -2,10 +2,18 @@
   "presets": ["latest"],
   "plugins": [
     "transform-object-rest-spread",
+    "transform-vue-jsx",    
     ["transform-runtime", {
       "helpers": false,
       "polyfill": false,
       "regenerator": true
     }]
-  ]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "vue-jsx-hot-reload",
+      ]
+    }
+  }
 }
