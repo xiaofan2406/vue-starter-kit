@@ -22,18 +22,18 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.vue', '.json'],
     alias: {
-      src: paths.srcDir // this allows import 'src/...' without knowing the relative path
+      app: paths.appDir // this allows import 'app/...' without knowing the relative path
     }
   },
   preLoaders: [
     {
       test: /\.vue$/,
       loader: 'eslint',
-      include: paths.srcDir
+      include: paths.appDir
     },
     {
       test: /\.js$/,
-      include: paths.srcDir,
+      include: paths.appDir,
       loader: 'eslint'
     }
   ],
@@ -41,7 +41,7 @@ module.exports = {
     {
       test: /\.vue$/,
       loader: 'vue',
-      include: paths.srcDir
+      include: paths.appDir
     },
     {
       test: /\.json$/,

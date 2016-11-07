@@ -1,24 +1,24 @@
 <template>
-  <div class="App-root">
-    <div class="App-header">
-      <img class="App-logo" src="./logo.png" />
-      <span class="App-title">Vue starter kit</span>
-      <div class="App-nav">
-        <router-link class="App-nav-link" active-class="App-nav-link-active" to="/" exact >Home</router-link>
-        <router-link class="App-nav-link" active-class="App-nav-link-active" to="/about">About</router-link>
+  <div class="App">
+    <div class="header">
+      <img class="logo" src="./favicon.png" />
+      <span class="title">Vue starter kit</span>
+      <div class="nav">
+        <router-link class="nav-link" active-class="nav-link-active" to="/" exact >Home</router-link>
+        <router-link class="nav-link" active-class="nav-link-active" to="/about">About</router-link>
       </div>
     </div>
-    <div class="App-main">
+    <div class="main">
       <router-view></router-view>
     </div>
   </div>
 </template>
 
 
-<style>
+<style scoped>
 @import './variables.css';
 
-.App-header {
+.header {
   background-color: #000;
   display: flex;
   align-items: center;
@@ -28,18 +28,18 @@
   height: var(--headerHeight);
 }
 
-.App-title {
+.title {
   font-size: 18px;
   color: #fff;
   font-family: monospace;
 }
 
-.App-logo {
+.logo {
   height: 40px;
 }
 
-.App-nav {
-  &>.App-nav-link {
+.nav {
+  &>.nav-link {
     text-decoration: none;
     color: #fff;
     display: inline-flex;
@@ -47,7 +47,7 @@
     height: 40px;
     align-items: center;
 
-    &.App-nav-link-active {
+    &.nav-link-active {
       border-bottom: 2px solid #FFF;
     }
   }

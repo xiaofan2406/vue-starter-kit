@@ -5,17 +5,24 @@
 ### Get Started
 - install dependencies
 ```
-npm i
+yarn install
 ```
 
 - run dev server
 ```
-npm run dev
+yarn run dev
 ```
 
 - build for production (build only, no server setup)
 ```
-npm run build
+yarn run build
+```
+
+- *Test production build
+```
+yarn global add pushstate-server
+
+pushstate-server ./build 9000
 ```
 
 

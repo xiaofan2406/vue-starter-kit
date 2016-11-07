@@ -3,6 +3,7 @@ const paths = require('./paths');
 const common = require('./webpack.common');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const pkg = require('../package.json');
 
 
@@ -13,7 +14,7 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: 'source-map',
   entry: {
-    main: `${paths.srcDir}/index.js`,
+    main: `${paths.appDir}/index.js`,
     vendor: Object.keys(pkg.dependencies)
   },
   resolve: {
@@ -32,14 +33,14 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        include: paths.srcDir,
+        include: paths.appDir,
         loader: 'babel'
       },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract(
         'style',
-        'css?-autoprefixer!postcss'
+        'css?-autoprefixer&importLoaders=1!postcss'
       )
       },
       ...common.loaders
@@ -53,8 +54,8 @@ module.exports = {
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' }),
     new HtmlWebpackPlugin({
       inject: true,
-      template: `${paths.srcDir}/index.html`,
-      favicon: `${paths.srcDir}/favicon.png`,
+      template: `${paths.appDir}/index.html`,
+      favicon: `${paths.appDir}/favicon.png`,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -87,6 +88,9 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'js/[name].[chunkhash:8].js'
+    }),
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json'
     })
   ]
 };

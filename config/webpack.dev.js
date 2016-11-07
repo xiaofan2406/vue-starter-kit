@@ -8,7 +8,7 @@ const getLocalIP = require('./ip');
 module.exports = {
   devtool: 'eval',
   entry: [
-    `${paths.srcDir}/index.js`
+    `${paths.appDir}/index.js`
   ],
   resolve: {
     extensions: common.resolve.extensions,
@@ -24,11 +24,11 @@ module.exports = {
     pathinfo: true
   },
   module: {
-    preLoaders: common.preLoaders,
+    preLoaders: [...common.preLoaders],
     loaders: [
       {
         test: /\.js$/,
-        include: paths.srcDir,
+        include: paths.appDir,
         loader: 'babel',
         query: {
           cacheDirectory: true
@@ -36,7 +36,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style!css?-autoprefixer!postcss'
+        loader: 'style!css?-autoprefixer&importLoaders=1!postcss'
       },
       ...common.loaders
     ]
@@ -48,8 +48,8 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
-      template: `${paths.srcDir}/index.html`,
-      favicon: `${paths.srcDir}/favicon.png`
+      template: `${paths.appDir}/index.html`,
+      favicon: `${paths.appDir}/favicon.png`
     }),
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"' }),
     new webpack.HotModuleReplacementPlugin()
