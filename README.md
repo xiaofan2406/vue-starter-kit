@@ -37,8 +37,6 @@
 - ##### JSX support
   See in branch [JSX](https://github.com/xiaofan2406/vue-starter-kit/tree/jsx)
 
-  _Note: JSX setup is not hot reloading properly_
-
 
 ### Folders
 - `config`: webpack configuration files
