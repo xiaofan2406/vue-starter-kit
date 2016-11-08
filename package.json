@@ -16,6 +16,7 @@
   },
   "keywords": [
     "vue",
+    "vuex",
     "vue-router",
     "babel",
     "webpack",
@@ -29,7 +30,8 @@
   "license": "ISC",
   "dependencies": {
     "vue": "^2.0.5",
-    "vue-router": "^2.0.1"
+    "vue-router": "^2.0.1",
+    "vuex": "^2.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
@@ -49,6 +51,7 @@
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.24.1",
     "json-loader": "^0.5.4",
+    "node-uuid": "^1.4.7",
     "postcss-cssnext": "^2.8.0",
     "postcss-import": "^8.2.0",
     "postcss-loader": "^1.1.1",

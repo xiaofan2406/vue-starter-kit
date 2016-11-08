@@ -6,6 +6,7 @@
       <div class="nav">
         <router-link class="nav-link" active-class="nav-link-active" to="/" exact >Home</router-link>
         <router-link class="nav-link" active-class="nav-link-active" to="/about">About</router-link>
+        <router-link class="nav-link" active-class="nav-link-active" to="/todo">Todo</router-link>
       </div>
     </div>
     <div class="main">
