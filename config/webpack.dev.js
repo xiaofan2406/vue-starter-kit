@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const paths = require('./paths');
 const common = require('./webpack.common');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const getLocalExternalIp = require('./local-external-ip');
+const getLocalIp = require('./local-ip');
 
 
 module.exports = {
@@ -65,7 +65,7 @@ module.exports = {
     watchOptions: {
       ignored: /node_modules/
     },
-    host: process.env.HOST || getLocalExternalIp(),
+    host: process.env.HOST || getLocalIp(),
     port: process.env.PORT || 8080
   }
 };
