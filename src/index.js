@@ -1,13 +1,4 @@
-import Vue from 'vue';
-
-import './reset.css';
-import App from './App';
-import router from './router';
+import { app } from './app';
 
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  render: h => h(App)
-});
+app.$mount('#app');

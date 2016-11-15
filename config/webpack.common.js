@@ -3,6 +3,7 @@ const cssnext = require('postcss-cssnext');
 const paths = require('./paths');
 
 
+// PostCSS plugins setup
 const postcss = wp => ([
   postcssImport({
     addDependencyTo: wp
@@ -24,6 +25,7 @@ module.exports = {
     extensions: ['', '.js', '.vue', '.json'],
     alias: {
       components: `${paths.appDir}/components`,
+      styles: `${paths.appDir}/styles`,
       app: paths.appDir // this allows import 'app/...' without knowing the relative path
     }
   },

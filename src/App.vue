@@ -16,7 +16,8 @@
 
 
 <style scoped>
-@import './variables.css';
+/* add ~ prefix to import as a module or webpack alias */
+@import '~styles/variables.css';
 
 .header {
   background-color: #000;

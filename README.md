@@ -38,14 +38,12 @@
 #### PostCSS
   - Including [`cssnext`](http://cssnext.io/) and [`postcss-import`](https://github.com/postcss/postcss-import)
 
-#### JSX support
-  - See in branch [JSX](https://github.com/xiaofan2406/vue-starter-kit/tree/jsx)
-
 
 ## Folders
 Path | Import alias | Description
 --- | --- | ---
-**config/** |  | project tooling configuration files
-**src/** | `app` | Vue app source files directory, processed by webpack
+**config/** |  | Project tooling configuration files folder
+**src/** | `app` | Vue app source files folder, processed by webpack
 src/**components/** | `components` | Vue components folder
-src/**router/** |  | Vue Router setup
+src/**styles/** | `styles` | Global CSS folder
+src/**router/** |  | Vue Router setup folder
