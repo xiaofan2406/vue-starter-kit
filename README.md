@@ -31,9 +31,13 @@
   pushstate-server ./build 9000
   ```
 
+
 ## Details
 #### Vuex
   - See in branch [vuex](https://github.com/xiaofan2406/vue-starter-kit/tree/vuex)
+
+#### Server rendering
+  - See in branch [server-render](https://github.com/xiaofan2406/vue-starter-kit/tree/server-render)
 
 #### PostCSS
   - Including [`cssnext`](http://cssnext.io/) and [`postcss-import`](https://github.com/postcss/postcss-import)
