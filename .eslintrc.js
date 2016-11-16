@@ -35,7 +35,8 @@ module.exports = {
     "no-console": 0, // still good for debuging
     "no-underscore-dangle": ["error", { "allowAfterThis": true, "allowAfterSuper": true }], // class helper methods
     "no-param-reassign": 0, // e.target.value = ''; happens all the time
-    "no-plusplus": 0, // i++ is allowed
+    "no-plusplus": 0, // i++ is allowed,
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
     "no-unused-vars": ["error", { "argsIgnorePattern": "^h$" }], // render(h)
     "arrow-parens": [2, "as-needed", { "requireForBlockBody": true }], // better looking arrow-funcs
     "import/extensions": [2, { "vue": "never" }],

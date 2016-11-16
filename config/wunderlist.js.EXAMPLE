@@ -1,0 +1,8 @@
+module.exports = {
+  authUrl: 'https://www.wunderlist.com/oauth/authorize',
+  tokenUrl: 'https://www.wunderlist.com/oauth/access_token',
+  apiUrl: 'https://a.wunderlist.com/api/v1',
+  redirectUrl: 'http://192.168.1.72:3000/auth',
+  clientId: 'client_id',
+  clientSecret: 'client_secret'
+};

@@ -4,8 +4,7 @@
       <img class="logo" src="./favicon.png" />
       <span class="title">Vue starter kit</span>
       <div class="nav">
-        <router-link class="nav-link" active-class="nav-link-active" to="/" exact >Home</router-link>
-        <router-link class="nav-link" active-class="nav-link-active" to="/about">About</router-link>
+        <router-link v-for="route in routes" class="nav-link" active-class="nav-link-active" :to="route.to" :exact="route.exact">{{route.text}}</router-link>
       </div>
     </div>
     <div class="main">
@@ -14,6 +13,18 @@
   </div>
 </template>
 
+<script>
+import { routes } from './router';
+
+
+export default {
+  data() {
+    return {
+      routes
+    };
+  }
+};
+</script>
 
 <style scoped>
 /* add ~ prefix to import as a module or webpack alias */

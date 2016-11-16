@@ -25,6 +25,7 @@ module.exports = {
     extensions: ['', '.js', '.vue', '.json'],
     alias: {
       components: `${paths.appDir}/components`,
+      config: `${paths.rootDir}/config`,
       styles: `${paths.appDir}/styles`,
       app: paths.appDir // this allows import 'app/...' without knowing the relative path
     }
