@@ -11,7 +11,7 @@ Vue.use(VueRouter);
 export const routes = [
   { path: '/', to: '/', component: Home, exact: true, text: 'Home' },
   { path: '/about', to: '/about', component: About, exact: false, text: 'About' },
-  { path: '/todo/:filter?', to: '/todo', component: TodoRoute, exact: false, text: 'Todo' }
+  { path: '/todo/:filter?', to: '/todo', component: TodoRoute, exact: false, text: 'Todo', meta: { requiresAuth: true } }
 ];
 
 const router = new VueRouter({

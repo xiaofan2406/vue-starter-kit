@@ -2,7 +2,7 @@
   <div>
     <input type="text" @keyup.enter="addTodo" />
     <div v-for="todo in visibleTodos" :key="todo.id">
-      {{todo.text}}  status: {{todo.completed}}
+      <span @click="toggleTodo(todo.id)">{{todo.text}}</span>  status: {{todo.completed}} <button @click="removeTodo(todo.id)">X</button>
     </div>
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
     if (!this.$store.userStore.user) {
       this.$router.push('/');
     }
-    this.$store.todoStore.fetchTodos(this.$store.userStore.token);
+    this.$store.todoStore.fetchTodos();
   },
   computed: {
     visibleTodos() {
@@ -24,6 +24,12 @@ export default {
     addTodo(e) {
       this.$store.todoStore.addTodo(e.target.value);
       e.target.value = '';
+    },
+    removeTodo(id) {
+      this.$store.todoStore.removeTodo(id);
+    },
+    toggleTodo(id) {
+      this.$store.todoStore.toggleTodo(id);
     }
   }
 };

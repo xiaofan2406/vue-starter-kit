@@ -32,7 +32,7 @@
     "express": "^4.14.0",
     "vue": "^2.0.5",
     "vue-router": "^2.0.1",
-    "vue-vue": "^0.0.6"
+    "vue-vue": "^0.0.7"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",

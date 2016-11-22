@@ -7,14 +7,18 @@ import UserStore from './user-store';
 
 Vue.use(VueVue);
 
-const todoStore = new TodoStore();
-const userStore = new UserStore();
 
+export default (initialState = null) => {
+  const store = VueVue.createStore({
+    todoStore: new TodoStore(),
+    userStore: new UserStore()
+  }, initialState);
 
-const store = VueVue.createStore({
-  todoStore,
-  userStore
-});
+  TodoStore.withAuth(store.userStore);
 
+  return store;
+};
 
-export default store;
+export const saveStore = (store) => {
+  localStorage.setItem('store', JSON.stringify(store.$data));
+};

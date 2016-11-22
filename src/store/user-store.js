@@ -7,8 +7,7 @@ class UserStore {
     this.authed = init.authed || false;
     this.user = init.user || null;
     this.token = init.token || null;
-    this.loading = false;
-    this.error = null;
+    this.error = init.error || null;
   }
 
   authUser(token) {
@@ -20,16 +19,16 @@ class UserStore {
       }
     })
     .then((res) => {
+      this.authed = true;
       this.error = null;
       this.user = res.data;
       this.token = token;
-      this.loading = false;
     })
     .catch((err) => {
+      this.authed = false;
       this.error = err.response.data;
       this.user = null;
       this.token = null;
-      this.loading = false;
     });
   }
 }

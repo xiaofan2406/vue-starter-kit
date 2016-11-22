@@ -1,18 +1,21 @@
 import Vue from 'vue';
-import { v4 } from 'node-uuid';
 
 import * as api from './api';
 
 
 class Todo {
   constructor(init = {}) {
-    this.id = init.id || v4();
+    this.id = init.id;
     this.text = init.text;
-    this.completed = init.completed || false;
+    this.completed = init.completed;
+    this.revision = init.revision;
   }
 
-  toggle() {
-    this.completed = !this.completed;
+  rebuild(data) {
+    this.id = data.id;
+    this.text = data.text;
+    this.completed = data.completed;
+    this.revision = data.revision;
   }
 }
 
@@ -25,9 +28,15 @@ class TodoStore {
     this.listId = init.listId || null;
   }
 
+  static withAuth(authStore) {
+    this.auth = authStore;
+  }
+
   async fetchTodos() {
-    this.listId = await api.getDefaultList();
-    api.getTodos(this.listId)
+    const token = TodoStore.auth.token;
+
+    this.listId = await api.getDefaultList(token);
+    api.getTodos(this.listId, token)
     .then((todos) => {
       for (const todo of todos) {
         Vue.set(this.byId, todo.id, new Todo(todo));
@@ -36,12 +45,17 @@ class TodoStore {
   }
 
   addTodo(text) {
-    api.addTodo(text, this.listId)
+    const token = TodoStore.auth.token;
+
+    api.addTodo(text, this.listId, token)
     .then(todo => Vue.set(this.byId, todo.id, new Todo(todo)));
   }
 
   removeTodo(id) {
-    api.removeTodo(id)
+    const token = TodoStore.auth.token;
+    const revision = this.byId[id].revision;
+
+    api.removeTodo(id, revision, token)
     .then((res) => {
       if (res) {
         Vue.delete(this.byId, id);
@@ -50,10 +64,14 @@ class TodoStore {
   }
 
   toggleTodo(id) {
-    api.toggleTodo(id)
+    const token = TodoStore.auth.token;
+    const revision = this.byId[id].revision;
+    const completed = !this.byId[id].completed;
+
+    api.toggleTodo(id, revision, completed, token)
     .then((res) => {
       if (res) {
-        this.byId[id].toggle();
+        this.byId[id].rebuild(res);
       }
     });
   }

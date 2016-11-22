@@ -1,26 +1,21 @@
 <template>
-  <div v-if="!user && !loading">
+  <div v-if="!authed">
     Login first
     <button @click="auth">login</button>
   </div>
   <div v-else>
-    <div v-if="loading">
-      loading...
+    <div v-if="error">
+      {{JSON.stringify(error)}}
     </div>
     <div v-else>
-      <div v-if="error">
-        {{JSON.stringify(error)}}
-      </div>
-      <div v-else>
-        Hello {{user.name}}
-      </div>
+      Hello {{user.name}}
     </div>
   </div>
 </template>
 
 <script>
 import wunderlist from 'config/wunderlist';
-
+import { saveStore } from '../store';
 
 export default {
   methods: {
@@ -29,11 +24,11 @@ export default {
     }
   },
   computed: {
+    authed() {
+      return this.$store.userStore.authed;
+    },
     user() {
       return this.$store.userStore.user;
-    },
-    loading() {
-      return this.$store.userStore.loading;
     },
     error() {
       return this.$store.userStore.error;
@@ -47,6 +42,13 @@ export default {
     const token = localStorage.getItem('token');
     if (!this.user && token) {
       this.$store.userStore.authUser(token);
+    }
+  },
+  watch: {
+    authed(newVal) {
+      if (newVal === true) {
+        saveStore(this.$store);
+      }
     }
   }
 };
