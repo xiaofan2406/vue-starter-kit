@@ -1,4 +1,6 @@
 # Vue Starter Kit
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/xiaofan2406/vue-starter-kit.svg)](https://greenkeeper.io/)
 [![Build Status][build-badge]][build] [![Dependencies Status][dependencies-badge]][dependencies]
 
 [build-badge]: https://img.shields.io/travis/xiaofan2406/vue-starter-kit.svg?style=flat-square
